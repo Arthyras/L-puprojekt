@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaxTask | Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar glass-card">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">MT</span>
+      <span class="brand-lockup">
+        <span class="brand-name">MaxTask</span>
+        <span class="brand-slogan">Your go-to for getting stuff done</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="memberNav" hidden>
+      <a class="nav-link is-active" href="index.html">Planner</a>
+      <a class="nav-link" href="calendar.html">Calendar</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="topbar-button" id="themeToggle" type="button">Dark mode</button>
+      <div class="user-chip" id="userChip" hidden>
+        <span id="userNameLabel">Guest</span>
+      </div>
+      <button class="topbar-button" id="logoutButton" type="button" hidden>Log Out</button>
+    </div>
+  </header>
+
+  <main class="site-shell">
+    <aside class="quote-rail quote-rail-left" aria-hidden="true">
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+    </aside>
+
+    <aside class="quote-rail quote-rail-right" aria-hidden="true">
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+    </aside>
+
+    <section class="auth-shell" id="authShell">
+      <div class="auth-copy glass-card">
+        <p class="eyebrow">Welcome Back</p>
+        <h1>MaxTask</h1>
+        <p class="storage-note">Accounts and assignments are saved in this browser.</p>
+      </div>
+
+      <div class="auth-panels">
+        <form class="auth-card glass-card" id="loginForm">
+          <p class="eyebrow">Login</p>
+          <h2 class="form-title">Open your planner</h2>
+          <p class="support-text">Use your username and password to continue.</p>
+
+          <div class="field-group">
+            <label for="loginUsername">Username</label>
+            <input id="loginUsername" name="loginUsername" type="text" autocomplete="username" required>
+          </div>
+
+          <div class="field-group">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" name="loginPassword" type="password" autocomplete="current-password" required>
+          </div>
+
+          <button class="primary-button" type="submit">Login</button>
+          <p class="status-message" id="loginMessage" aria-live="polite"></p>
+        </form>
+
+        <form class="auth-card glass-card" id="registerForm">
+          <p class="eyebrow">Register</p>
+          <h2 class="form-title">Create an account</h2>
+          <p class="support-text">Your assignments will belong to this username.</p>
+
+          <div class="field-group">
+            <label for="registerUsername">Username</label>
+            <input id="registerUsername" name="registerUsername" type="text" autocomplete="username" minlength="3" required>
+          </div>
+
+          <div class="field-group">
+            <label for="registerPassword">Password</label>
+            <input id="registerPassword" name="registerPassword" type="password" autocomplete="new-password" minlength="4" required>
+          </div>
+
+          <button class="primary-button" type="submit">Create Account</button>
+          <p class="status-message" id="registerMessage" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="app-shell" id="appShell" hidden>
+      <section class="hero-card planner-hero glass-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Study Planner</p>
+          <h1 id="welcomeTitle">MaxTask</h1>
+        </div>
+
+        <form class="task-form" id="taskForm">
+          <div class="field-group">
+            <label for="taskTitle">Assignment</label>
+            <input id="taskTitle" name="taskTitle" type="text" placeholder="Finish math worksheet" required>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="taskDeadline">Deadline</label>
+              <input id="taskDeadline" name="taskDeadline" type="date" required>
+            </div>
+
+            <div class="field-group">
+              <label for="taskLane">Add To</label>
+              <select id="taskLane" name="taskLane">
+                <option value="main" selected>Main</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="drag-tip">Drag a card between boxes whenever priorities change.</p>
+          <button class="primary-button" type="submit">Add Assignment</button>
+        </form>
+      </section>
+
+      <section class="dashboard">
+        <div class="toolbar">
+          <div>
+            <p class="eyebrow">Your Boards</p>
+            <h2 id="plannerHeading">Your planner</h2>
+            <p class="toolbar-note">Both sections stay sorted from earliest deadline to latest.</p>
+          </div>
+
+          <a class="topbar-button nav-cta" href="calendar.html">Open Calendar</a>
+        </div>
+
+        <div class="board">
+          <section class="panel glass-card">
+            <div class="panel-header">
+              <h3>Main</h3>
+              <span id="mainCount" class="count-badge">0</span>
+            </div>
+            <div id="mainList" class="task-list" data-lane="main" aria-live="polite"></div>
+          </section>
+
+          <section class="panel glass-card urgent-panel">
+            <div class="panel-header">
+              <h3>Urgent</h3>
+              <span id="urgentCount" class="count-badge urgent-badge">0</span>
+            </div>
+            <div id="urgentList" class="task-list" data-lane="urgent" aria-live="polite"></div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <template id="emptyStateTemplate">
+    <div class="empty-state">
+      <p>No assignments here yet.</p>
+    </div>
+  </template>
+
+  <script src="shared.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

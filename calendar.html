@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaxTask | Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar glass-card">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">MT</span>
+      <span class="brand-lockup">
+        <span class="brand-name">MaxTask</span>
+        <span class="brand-slogan">Your go-to for getting stuff done</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="memberNav" hidden>
+      <a class="nav-link" href="index.html">Planner</a>
+      <a class="nav-link is-active" href="calendar.html">Calendar</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="topbar-button" id="themeToggle" type="button">Dark mode</button>
+      <div class="user-chip" id="userChip" hidden>
+        <span id="userNameLabel">Guest</span>
+      </div>
+      <button class="topbar-button" id="logoutButton" type="button" hidden>Log Out</button>
+    </div>
+  </header>
+
+  <main class="site-shell">
+    <aside class="quote-rail quote-rail-left" aria-hidden="true">
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+    </aside>
+
+    <aside class="quote-rail quote-rail-right" aria-hidden="true">
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+      <p class="quote-chip rail-quote" data-quote-slot></p>
+    </aside>
+
+    <section class="calendar-shell">
+      <section class="calendar-hero glass-card">
+        <div>
+          <p class="eyebrow">Calendar View</p>
+          <h1 id="calendarHeading">MaxTask</h1>
+          <p class="hero-text" id="calendarSubhead">
+            Your go-to for getting stuff done.
+          </p>
+        </div>
+
+        <div class="calendar-actions">
+          <button class="topbar-button" id="prevMonth" type="button">Previous</button>
+          <div class="month-pill" id="monthLabel">Month</div>
+          <button class="topbar-button" id="nextMonth" type="button">Next</button>
+          <button class="topbar-button" id="todayButton" type="button">This Month</button>
+        </div>
+      </section>
+
+      <section class="calendar-layout">
+        <section class="calendar-board glass-card">
+          <div class="calendar-scroll">
+            <div class="weekday-row">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+
+            <div id="calendarGrid" class="calendar-grid" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <aside class="agenda-panel glass-card">
+          <p class="eyebrow agenda-eyebrow">Assignment Snapshot</p>
+          <h2>Upcoming deadlines</h2>
+          <div id="agendaList" class="agenda-list"></div>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="calendar.js"></script>
+</body>
+</html>
